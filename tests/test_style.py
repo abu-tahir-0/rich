@@ -265,3 +265,23 @@ def test_clear_meta_and_links_clears_hash():
 
     clear_style = style.clear_meta_and_links()
     assert clear_style._hash is None
+
+
+def test_update_link_definition_after_str():
+    """Regression test for https://github.com/Textualize/rich/issues/4262."""
+    style = Style(bold=True)
+    str(style)  # Cache definition on original
+    linked = style.update_link("http://x")
+    assert str(linked) == "bold link http://x"
+
+    style_with_link = Style(bold=True, link="http://x")
+    str(style_with_link)  # Cache definition on original
+    unlinked = style_with_link.update_link(None)
+    assert str(unlinked) == "bold"
+
+
+def test_clear_meta_and_links_definition_after_str():
+    style = Style(bold=True, link="http://x")
+    str(style)  # Cache definition on original
+    cleared = style.clear_meta_and_links()
+    assert str(cleared) == "bold"

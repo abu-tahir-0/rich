@@ -656,7 +656,7 @@ class Style:
             return NULL_STYLE
         style: Style = self.__new__(Style)
         style._ansi = self._ansi
-        style._style_definition = self._style_definition
+        style._style_definition = None
         style._color = self._color
         style._bgcolor = self._bgcolor
         style._attributes = self._attributes
@@ -679,7 +679,7 @@ class Style:
         """
         style: Style = self.__new__(Style)
         style._ansi = self._ansi
-        style._style_definition = self._style_definition
+        style._style_definition = None
         style._color = self._color
         style._bgcolor = self._bgcolor
         style._attributes = self._attributes
